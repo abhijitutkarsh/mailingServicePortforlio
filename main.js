@@ -6,7 +6,7 @@ var cors = require("cors");
 // const session = require("express-session");
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 3001;
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -37,6 +37,6 @@ app.get("/",(req, res)=>{
 
 app.post('/sendMail', SendMailControllers)
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`server started on http://localhost:3002`);
 });
