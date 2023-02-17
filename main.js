@@ -2,7 +2,8 @@ const http = require("http");
 const express = require("express");
 const fs = require("fs");
 var cors = require("cors");
-
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 // const session = require("express-session");
 
 const app = express();
@@ -21,6 +22,8 @@ app.use(express.json());
     })
   );
   
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Origin", req.headers.origin);
@@ -29,7 +32,6 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );
-  console.log(req.headers.origin);
   next();
 });
 app.enable('trust proxy');
