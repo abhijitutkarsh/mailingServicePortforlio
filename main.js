@@ -16,7 +16,7 @@ app.use(express.json());
  app.use(
     cors({
       // origin: ["https://ecommerce370001.herokuapp.com"],
-      origin:'*', 
+      origin:'https://abhijitutkarsh.tech', 
       credentials:true,            //access-control-allow-credentials:true
       optionSuccessStatus:200,
     })
