@@ -15,7 +15,7 @@ app.use(express.json());
  app.use(
     cors({
       // origin: ["https://ecommerce370001.herokuapp.com"],
-      origin:["http://194.163.40.137:3000/","https://react-portfolio-orcin-nine.vercel.app/","0.0.0.0"], 
+      origin:["http://194.163.40.137:3000/","https://react-portfolio-orcin-nine.vercel.app/"], 
       methods: ["GET", "POST"],
       credentials: true,
     })
@@ -23,12 +23,13 @@ app.use(express.json());
   
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", 'http://194.163.40.137:3000');
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );
+  console.log(req.headers.origin);
   next();
 });
 app.enable('trust proxy');
