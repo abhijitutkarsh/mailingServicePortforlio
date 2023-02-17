@@ -15,7 +15,7 @@ app.use(express.json());
  app.use(
     cors({
       // origin: ["https://ecommerce370001.herokuapp.com"],
-      origin:["http://localhost:3000","https://react-portfolio-orcin-nine.vercel.app/"], 
+      origin:["http://194.163.40.137:3000/","https://react-portfolio-orcin-nine.vercel.app/"], 
       methods: ["GET", "POST"],
       credentials: true,
     })
