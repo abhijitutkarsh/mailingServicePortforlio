@@ -5,6 +5,7 @@ var cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 // const session = require("express-session");
+const startDb = require("./database/init");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -15,7 +16,6 @@ app.use(express.json());
  app.use( express.urlencoded({extended: true}))
  app.use(
     cors({
-      // origin: ["https://ecommerce370001.herokuapp.com"],
       origin:'https://abhijitutkarsh.tech', 
       credentials:true,            //access-control-allow-credentials:true
       optionSuccessStatus:200,
@@ -45,13 +45,21 @@ app.enable('trust proxy');
 //  }))
 const SendMailControllers = require("./controllers/SendMailControllers");
 
+startDb();
+const getAllBlogControllers = require("./controllers/getAllBlogControllers");
 
 app.get("/",(req, res)=>{
-    res.end("hello")
+    res.end("hello") 
 });
 
 
 app.post('/sendMail', SendMailControllers)
+
+app
+  .route("/getAllBlog")
+  .get(getAllBlogControllers)
+  
+
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`server started on http://localhost:3002`);
